@@ -7,7 +7,20 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        art: {
+          primary: "rgb(181, 8, 56, 1)",
+          "primary-dark": "rgb(162, 8, 50, 1)",
+          gray: {
+            dark: "rgba(51, 51, 51, 1)",
+            light: "rgba(112, 112, 112, 1)",
+            "extra-light": "rgba(155, 155, 155, 1)",
+            stroke: "rgba(229, 229, 229, 1)",
+          },
+        },
+      },
+    },
   },
   plugins: [],
 };

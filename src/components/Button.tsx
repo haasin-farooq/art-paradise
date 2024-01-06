@@ -14,7 +14,7 @@ export const Button: FC<ButtonProps> = ({ label, disabled, ...props }) => {
   return (
     <button
       type="button"
-      className={`text-white bg-art-primary hover:bg-art-primary-dark transition duration-100 shadow-black rounded-lg py-4 px-5 space-x-2 flex sm:whitespace-nowrap leading-tight items-center justify-center border shadow-border w-full ${
+      className={`shadow-border flex w-full items-center justify-center space-x-2 rounded-lg border bg-art-primary px-5 py-4 leading-tight text-white shadow-black transition duration-100 hover:bg-art-primary-dark sm:whitespace-nowrap ${
         disabled ? "cursor-not-allowed opacity-50" : "cursor-pointer"
       }`}
       aria-label={label}

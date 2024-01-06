@@ -20,7 +20,7 @@ const Input: React.FC<InputProps> = ({
   return (
     <div className={className}>
       <input
-        className="block w-full bg-white p-4 shadow-none outline-none outline-0 ring-0 placeholder:text-art-gray-400 rounded-lg border border-art-gray-stroke transition duration-100 focus-within:border-art-gray-extra-light"
+        className="placeholder:text-art-gray-400 block w-full rounded-lg border border-art-gray-stroke bg-white p-4 shadow-none outline-none outline-0 ring-0 transition duration-100 focus-within:border-art-gray-extra-light"
         {...inputProps}
         onChange={(e) => onChange?.(e)}
         onBlur={onBlur}

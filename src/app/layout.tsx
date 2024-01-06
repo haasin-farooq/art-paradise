@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { FC, ReactNode } from "react";
-import { Navbar } from "@/components/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,10 +17,7 @@ interface RootLayoutProp {
 const RootLayout: FC<RootLayoutProp> = ({ children }) => {
   return (
     <html lang="en">
-      <body className={`min-h-screen ${inter.className}`}>
-        <Navbar />
-        {children}
-      </body>
+      <body className={`min-h-screen ${inter.className}`}>{children}</body>
     </html>
   );
 };
