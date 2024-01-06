@@ -14,10 +14,12 @@ interface RootLayoutProp {
 
 const RootLayout: FC<RootLayoutProp> = ({ children }) => {
   return (
-    <div>
+    <>
       <Navbar />
-      {children}
-    </div>
+      <div className="w-full max-w-7xl px-4 py-6 sm:mx-auto sm:px-6 sm:py-8">
+        {children}
+      </div>
+    </>
   );
 };
 

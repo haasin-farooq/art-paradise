@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-import { Button } from "@/components/Button";
+import { Button, ButtonWidth } from "@/components/Button";
 import Input from "@/components/Input";
 
 import LoginImage from "../../assets/images/login-image.png";
@@ -83,6 +83,7 @@ const LoginPage = () => {
           />
           <Button
             label="Login"
+            width={ButtonWidth.FULL}
             disabled={disabled}
             onClick={() => login(userInfo)}
           />
