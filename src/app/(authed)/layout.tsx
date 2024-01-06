@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
 import { FC, ReactNode } from "react";
-import { AuthProvider } from "@/contexts/AuthContext";
 
-const inter = Inter({ subsets: ["latin"] });
+import { Navbar } from "@/components/Navbar";
 
 export const metadata: Metadata = {
   title: "Art Paradise",
@@ -17,11 +14,10 @@ interface RootLayoutProp {
 
 const RootLayout: FC<RootLayoutProp> = ({ children }) => {
   return (
-    <html lang="en">
-      <body className={`min-h-screen ${inter.className}`}>
-        <AuthProvider>{children}</AuthProvider>
-      </body>
-    </html>
+    <div>
+      <Navbar />
+      {children}
+    </div>
   );
 };
 

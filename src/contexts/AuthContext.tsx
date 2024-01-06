@@ -1,0 +1,73 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+import {
+  createContext,
+  useState,
+  useContext,
+  useEffect,
+  ReactNode,
+  FC,
+} from "react";
+
+interface AuthContext {
+  isLoggedIn: boolean;
+  isLoading: boolean;
+  login: (username: string) => void;
+  logout: () => void;
+}
+
+const MISSING_AUTH_CONTEXT_PROVIDER =
+  "You forgot to wrap your app in <AuthProvider>";
+
+const AuthContext = createContext<AuthContext>({
+  get isLoggedIn(): never {
+    throw new Error(MISSING_AUTH_CONTEXT_PROVIDER);
+  },
+  get isLoading(): never {
+    throw new Error(MISSING_AUTH_CONTEXT_PROVIDER);
+  },
+  get login(): never {
+    throw new Error(MISSING_AUTH_CONTEXT_PROVIDER);
+  },
+  get logout(): never {
+    throw new Error(MISSING_AUTH_CONTEXT_PROVIDER);
+  },
+});
+
+export const useAuth = () => useContext(AuthContext);
+
+interface AuthContextProps {
+  children: ReactNode;
+}
+
+export const AuthProvider: FC<AuthContextProps> = ({ children }) => {
+  const router = useRouter();
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const loggedIn = !!localStorage.getItem("username");
+    setIsLoggedIn(loggedIn);
+    setIsLoading(false);
+  }, []);
+
+  const login = (username: string) => {
+    localStorage.setItem("username", username);
+    setIsLoggedIn(true);
+    router.push("/dashboard");
+  };
+
+  const logout = () => {
+    localStorage.removeItem("username");
+    setIsLoggedIn(false);
+    router.push("/login");
+  };
+
+  return (
+    <AuthContext.Provider value={{ isLoggedIn, isLoading, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};

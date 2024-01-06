@@ -1,0 +1,14 @@
+[
+  {
+    "username": "haasinfarooq",
+    "email": "haasin.farooq@gmail.com",
+    "password": "haasin123",
+    "last_login_date": null
+  },
+  {
+    "username": "johndoe",
+    "email": "john.doe@gmail.com",
+    "password": "john123",
+    "last_login_date": null
+  }
+]
