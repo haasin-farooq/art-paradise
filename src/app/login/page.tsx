@@ -14,7 +14,7 @@ import { useAuth } from "@/contexts/AuthContext";
 
 const LoginPage = () => {
   const router = useRouter();
-  const { isLoggedIn, isLoading, login } = useAuth();
+  const { isLoggedIn, isLoading, login, errorMessage } = useAuth();
 
   const [userInfo, setUserInfo] = useState<User>({
     username: "",
@@ -23,7 +23,8 @@ const LoginPage = () => {
     last_login_date: null,
   });
 
-  const disabled = !userInfo.username || !userInfo.email || !userInfo.password;
+  const disabled =
+    !userInfo.username || !userInfo.email || !userInfo.password || isLoading;
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -31,7 +32,7 @@ const LoginPage = () => {
     }
   }, [isLoggedIn, router]);
 
-  return isLoading || isLoggedIn ? null : (
+  return isLoggedIn ? null : (
     <div className="grid h-full grid-cols-12">
       <div className="relative col-span-4 hidden h-full min-h-screen sm:block">
         <Image
@@ -83,8 +84,9 @@ const LoginPage = () => {
           <Button
             label="Login"
             disabled={disabled}
-            onClick={() => login(userInfo.username)}
+            onClick={() => login(userInfo)}
           />
+          <p className="text-red-500">{errorMessage}</p>
         </div>
       </div>
     </div>

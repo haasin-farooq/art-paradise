@@ -1,5 +1,7 @@
 "use client";
 
+import { loginUser } from "@/utils/auth";
+import { User } from "@/utils/types";
 import { useRouter } from "next/navigation";
 import {
   createContext,
@@ -13,8 +15,9 @@ import {
 interface AuthContext {
   isLoggedIn: boolean;
   isLoading: boolean;
-  login: (username: string) => void;
+  login: (user: User) => void;
   logout: () => void;
+  errorMessage: string | null;
 }
 
 const MISSING_AUTH_CONTEXT_PROVIDER =
@@ -33,6 +36,9 @@ const AuthContext = createContext<AuthContext>({
   get logout(): never {
     throw new Error(MISSING_AUTH_CONTEXT_PROVIDER);
   },
+  get errorMessage(): never {
+    throw new Error(MISSING_AUTH_CONTEXT_PROVIDER);
+  },
 });
 
 export const useAuth = () => useContext(AuthContext);
@@ -46,6 +52,7 @@ export const AuthProvider: FC<AuthContextProps> = ({ children }) => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
     const loggedIn = !!localStorage.getItem("username");
@@ -53,10 +60,28 @@ export const AuthProvider: FC<AuthContextProps> = ({ children }) => {
     setIsLoading(false);
   }, []);
 
-  const login = (username: string) => {
-    localStorage.setItem("username", username);
-    setIsLoggedIn(true);
-    router.push("/dashboard");
+  const login = async (user: User) => {
+    setErrorMessage(null);
+    setIsLoading(true);
+
+    try {
+      const res = await loginUser(user);
+      const data = await res.json();
+
+      if (res.ok) {
+        localStorage.setItem("username", user.username);
+        setIsLoggedIn(true);
+        router.push("/dashboard");
+      } else {
+        console.error(data.message);
+        setErrorMessage(data.message);
+        setIsLoggedIn(false);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const logout = () => {
@@ -66,7 +91,9 @@ export const AuthProvider: FC<AuthContextProps> = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, isLoading, login, logout }}>
+    <AuthContext.Provider
+      value={{ isLoggedIn, isLoading, login, logout, errorMessage }}
+    >
       {children}
     </AuthContext.Provider>
   );
