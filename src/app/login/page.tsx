@@ -14,7 +14,7 @@ import { useAuth } from "@/contexts/AuthContext";
 
 const LoginPage = () => {
   const router = useRouter();
-  const { isLoggedIn, isLoading, login, errorMessage } = useAuth();
+  const { currentUser, isLoading, login, errorMessage } = useAuth();
 
   const [userInfo, setUserInfo] = useState<User>({
     username: "",
@@ -27,12 +27,12 @@ const LoginPage = () => {
     !userInfo.username || !userInfo.email || !userInfo.password || isLoading;
 
   useEffect(() => {
-    if (isLoggedIn) {
+    if (currentUser) {
       router.push("/dashboard");
     }
-  }, [isLoggedIn, router]);
+  }, [currentUser, router]);
 
-  return isLoggedIn ? null : (
+  return currentUser ? null : (
     <div className="grid h-full grid-cols-12">
       <div className="relative col-span-4 hidden h-full min-h-screen sm:block">
         <Image

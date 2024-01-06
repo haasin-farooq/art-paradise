@@ -38,9 +38,7 @@ export default async (req: NextApiRequest, res: NextApiResponse<Response>) => {
         const { password, ...userData } = users[userIndex];
         res.status(200).json({ data: [userData], message: "Login successful" });
       } else {
-        res
-          .status(401)
-          .json({ data: [], message: "Invalid username or password" });
+        res.status(401).json({ data: [], message: "Invalid credentials" });
       }
     } catch (error) {
       res.status(500).json({ data: [], message: "Server error" });

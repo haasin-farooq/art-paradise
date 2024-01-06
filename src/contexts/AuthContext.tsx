@@ -13,7 +13,7 @@ import {
 } from "react";
 
 interface AuthContext {
-  isLoggedIn: boolean;
+  currentUser: string | null;
   isLoading: boolean;
   login: (user: User) => void;
   logout: () => void;
@@ -24,7 +24,7 @@ const MISSING_AUTH_CONTEXT_PROVIDER =
   "You forgot to wrap your app in <AuthProvider>";
 
 const AuthContext = createContext<AuthContext>({
-  get isLoggedIn(): never {
+  get currentUser(): never {
     throw new Error(MISSING_AUTH_CONTEXT_PROVIDER);
   },
   get isLoading(): never {
@@ -50,13 +50,13 @@ interface AuthContextProps {
 export const AuthProvider: FC<AuthContextProps> = ({ children }) => {
   const router = useRouter();
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
-    const loggedIn = !!localStorage.getItem("username");
-    setIsLoggedIn(loggedIn);
+    const username = localStorage.getItem("username");
+    setCurrentUser(username);
     setIsLoading(false);
   }, []);
 
@@ -70,12 +70,12 @@ export const AuthProvider: FC<AuthContextProps> = ({ children }) => {
 
       if (res.ok) {
         localStorage.setItem("username", user.username);
-        setIsLoggedIn(true);
+        setCurrentUser(user.username);
         router.push("/dashboard");
       } else {
         console.error(data.message);
         setErrorMessage(data.message);
-        setIsLoggedIn(false);
+        setCurrentUser(null);
       }
     } catch (error) {
       console.error(error);
@@ -86,13 +86,13 @@ export const AuthProvider: FC<AuthContextProps> = ({ children }) => {
 
   const logout = () => {
     localStorage.removeItem("username");
-    setIsLoggedIn(false);
+    setCurrentUser(null);
     router.push("/login");
   };
 
   return (
     <AuthContext.Provider
-      value={{ isLoggedIn, isLoading, login, logout, errorMessage }}
+      value={{ currentUser, isLoading, login, logout, errorMessage }}
     >
       {children}
     </AuthContext.Provider>

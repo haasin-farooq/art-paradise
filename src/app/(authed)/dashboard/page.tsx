@@ -6,15 +6,15 @@ import { useEffect } from "react";
 
 const DashboardPage = () => {
   const router = useRouter();
-  const { isLoggedIn, isLoading } = useAuth();
+  const { currentUser } = useAuth();
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    if (!currentUser) {
       router.push("/login");
     }
-  }, [isLoggedIn, router]);
+  }, [currentUser, router]);
 
-  return isLoading || !isLoggedIn ? null : <div>Dashboard</div>;
+  return !currentUser ? null : <div>Dashboard</div>;
 };
 
 export default DashboardPage;

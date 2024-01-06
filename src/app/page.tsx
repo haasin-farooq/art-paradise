@@ -5,15 +5,15 @@ import { redirect } from "next/navigation";
 import { useEffect } from "react";
 
 export default function Home() {
-  const { isLoggedIn } = useAuth();
+  const { currentUser } = useAuth();
 
   useEffect(() => {
-    if (isLoggedIn) {
+    if (currentUser) {
       redirect("/dashboard");
     } else {
       redirect("/login");
     }
-  }, [isLoggedIn]);
+  }, [currentUser]);
 
   return <></>;
 }
