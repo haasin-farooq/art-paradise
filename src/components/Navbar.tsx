@@ -6,6 +6,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Logo from "../assets/images/logo.png";
 import { useAuth } from "@/contexts/AuthContext";
 import IconLogout from "@/svgs/icons/logout";
+import Link from "next/link";
 
 export const Navbar = () => {
   const { currentUser, logout } = useAuth();
@@ -30,8 +31,10 @@ export const Navbar = () => {
   }, [isMenuOpen]);
 
   return (
-    <nav className="border-leland-art-gray-stroke bg-leland-white relative flex h-20 w-full items-center justify-between space-x-4 border-b p-4 sm:px-6">
-      <Image src={Logo} alt="Logo" width={80} height={80} />
+    <nav className="fixed top-0 z-10 flex h-20 w-full items-center justify-between space-x-4 border-b border-art-gray-stroke bg-white p-4 sm:px-6">
+      <Link href="/" className="cursor-pointer">
+        <Image src={Logo} alt="Logo" width={80} height={80} />
+      </Link>
       <div className="flex items-center space-x-4">
         <p className="text-art-gray-light">{currentUser}</p>
         <div ref={menuRef} className="relative">
@@ -49,7 +52,7 @@ export const Navbar = () => {
               aria-labelledby="article-options"
             >
               <button
-                className="hover:bg-art-gray-hover flex w-full space-x-2 rounded-md px-3 py-2 text-sm text-art-gray-dark"
+                className="hover:bg-art-gray-hover flex w-full space-x-2 rounded-md px-3 py-2 text-sm"
                 onClick={logout}
               >
                 <IconLogout className="h-4.5 w-4.5" />

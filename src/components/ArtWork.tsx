@@ -26,10 +26,10 @@ export const ArtWork: FC<ArtWorkProps> = async ({ art, className = "" }) => {
 
   return (
     <Link
-      href="/"
+      href={`/artwork/${art.id}`}
       className={`trasition hover:bg-art-gray-hover flex flex-col space-y-4 rounded-md border border-art-gray-stroke bg-white p-4 text-start shadow-md duration-100 ${className}`}
     >
-      <h2 className="text-lg font-medium text-art-gray-dark">{art.title}</h2>
+      <h2 className="text-lg font-medium">{art.title}</h2>
       <Image
         src={imageUrl}
         alt={`Thumbnail of ${art.title}`}

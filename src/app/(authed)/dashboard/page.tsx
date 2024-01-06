@@ -17,9 +17,7 @@ const DashboardPage = () => {
 
   return currentUser ? (
     <>
-      <h1 className="mb-8 text-3xl font-medium text-art-gray-dark">
-        Dashboard
-      </h1>
+      <h1 className="mb-8 text-3xl font-medium">Dashboard</h1>
       <Button label="Search Art" onClick={() => router.push("/search")} />
     </>
   ) : null;

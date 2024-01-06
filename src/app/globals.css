@@ -3,7 +3,5 @@
 @tailwind utilities;
 
 body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  @apply m-0 box-border p-0 font-normal text-art-gray-dark;
 }

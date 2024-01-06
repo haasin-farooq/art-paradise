@@ -24,6 +24,10 @@ const config: Config = {
       width: {
         "4.5": "1.125rem",
       },
+      spacing: {
+        "50%": "50%",
+        "80%": "80%",
+      },
     },
   },
   plugins: [],
