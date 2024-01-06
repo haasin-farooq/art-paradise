@@ -52,10 +52,10 @@ export const Navbar = () => {
               aria-labelledby="article-options"
             >
               <button
-                className="hover:bg-art-gray-hover flex w-full space-x-2 rounded-md px-3 py-2 text-sm"
+                className="hover:bg-art-gray-hover flex w-full items-center space-x-2 rounded-md px-3 py-2"
                 onClick={logout}
               >
-                <IconLogout className="h-4.5 w-4.5" />
+                <IconLogout className="h-5 w-5" />
                 <span>Logout</span>
               </button>
             </div>

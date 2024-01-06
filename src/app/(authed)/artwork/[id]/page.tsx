@@ -1,5 +1,8 @@
+import { Button } from "@/components/Button";
+import IconArrowLeft from "@/svgs/icons/arrow-left";
 import { ArtDetail } from "@/utils/types";
 import Image from "next/image";
+import Link from "next/link";
 import React, { FC } from "react";
 
 async function getData(id: number) {
@@ -21,10 +24,15 @@ const ArtWorkPage: FC<ArtWorkPageProps> = async ({ params }) => {
   const art: ArtDetail = data.data;
   const imageUrl = `https://www.artic.edu/iiif/2/${art.image_id}/full/843,/0/default.jpg`;
 
-  const [artistName, _] = art.artist_display.split(", ");
-
   return (
     <div className="flex flex-col space-y-10">
+      <Link
+        href="/search"
+        className="flex items-center space-x-2 text-art-gray-light"
+      >
+        <IconArrowLeft className="h-6 w-6" />
+        <span>Back to artworks</span>
+      </Link>
       <div className="sm:pb-50% pb-80% relative w-full">
         <Image
           src={imageUrl}
