@@ -2,14 +2,12 @@
 
 Art Paradise is a Next.js application that brings a creative and user-friendly platform to explore and interact with artworks from the Art Institute of Chicago. Users can log in, search, claim, and manage unique art pieces, creating a personalized art viewing experience.
 
-
 ## Project Features
 
 - Login functionality to manage user sessions.
 - Search feature to explore a wide range of artworks.
 - Ability to claim artworks, making them exclusive to the user's profile.
 - Dashboard for viewing and managing claimed art pieces.
-
 
 ## Built With
 
@@ -21,16 +19,14 @@ Art Paradise is a Next.js application that brings a creative and user-friendly p
 
 For a full list of dependencies, refer to `package.json`.
 
-
 ## Prerequisites
 
 Before running the project, ensure you have:
 
-- [Node.js](https://nodejs.org/) (latest stable version)
+- [Node.js](https://nodejs.org/) (version >= 18.17.0)
 - npm (usually comes with Node.js)
 - [Git](https://git-scm.com/) for cloning the repository
 - Basic knowledge of JavaScript, React, and Next.js
-
 
 ## Getting Started
 
@@ -62,6 +58,7 @@ To get a local copy up and running, follow these steps:
 
 Open http://localhost:3000 with your browser to see the result.
 
+You can login using any of the test user credentials that can be found in `/src/data/users.json`.
 
 ## Project Link
 
