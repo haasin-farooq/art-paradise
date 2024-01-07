@@ -12,13 +12,13 @@ interface RootLayoutProp {
 
 const RootLayout: FC<RootLayoutProp> = ({ children }) => {
   const router = useRouter();
-  const { currentUser } = useAuth();
+  const { currentUser, isLoading } = useAuth();
 
   useEffect(() => {
-    if (!currentUser) {
+    if (!currentUser && !isLoading) {
       router.push("/login");
     }
-  }, [currentUser, router]);
+  }, [currentUser, isLoading, router]);
 
   return currentUser ? (
     <>

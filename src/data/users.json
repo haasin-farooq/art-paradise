@@ -3,7 +3,7 @@
     "username": "haasinfarooq",
     "email": "haasin.farooq@gmail.com",
     "password": "haasin123",
-    "last_login_date": "2024-01-07T03:45:25.891Z",
+    "last_login_date": "2024-01-07T13:41:20.836Z",
     "art_works_claimed": [
       {
         "id": 14572,
@@ -15,13 +15,13 @@
         "artist_display": "Edgar Degas\nFrench, 1834-1917"
       },
       {
-        "id": 3752,
-        "title": "The Madonna of the Rosary",
+        "id": 11723,
+        "title": "Woman at Her Toilette",
         "thumbnail": {
-          "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAAIqKd4+Pe5WVgJWUgZaVgZaXgpiYhJmZhJqahpubh52diaOijaink6qqlAAAAAAAACH5BAAAAAAALAAAAAADAAUAAAQLMAUlziiIKGDaYhEAOw==",
-          "alt_text": "A work made of engraving on ivory laid paper."
+          "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAAE9MQV1XRl5YRmNdT2JgVGplV3RtW3JsX35wXW9rYHl3cX17eYJ4a4+Hd4GBfoaDf4iEfY6JgYmKhZuXjZWSkJaSkJydlpqZmZqamp+dmpqbnamelqCemqShk6Cgm6ujnK6nn7m0rbSzsgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhwABDYnBYOgTFAvHAcA6JyIZyyQwAFZHGMykIPiEQpBEEADs=",
+          "alt_text": "Painted portrait dominated by loose, large brushstrokes of a woman, seen from the back, wearing a gauzy white off-the-shoulder dress and black choker, blond hair swept up, examining herself in a mirror at left. The background is a feathered swirl suggesting floral pattern in cool pale tones of gray, purple, pink, and blue."
         },
-        "artist_display": "Israhel van Meckenem the Younger\nGerman, c. 1440/45-1503"
+        "artist_display": "Berthe Morisot\nFrench, 1841-1895"
       },
       {
         "id": 21977,
@@ -31,15 +31,6 @@
           "alt_text": "A work made of stoneware with celadon glaze and underglaze incised decoration."
         },
         "artist_display": "Korea"
-      },
-      {
-        "id": 6010,
-        "title": "Number 19",
-        "thumbnail": {
-          "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAAKlyV6pyWqt2Xad9W654XYx+d6qMUqyRV5OCdqeAaa+DbLWIaLeLcLKKd7ePgAAAACH5BAAAAAAALAAAAAADAAUAAAQLUASAFClptHUcMxEAOw==",
-          "alt_text": "Blurry rectangles of yellow, gray, and black float against background of orange."
-        },
-        "artist_display": "Mark Rothko (Marcus Rothkowitz)\nAmerican, born Russia (Latvia), 1903–1970"
       }
     ]
   },

@@ -28,7 +28,7 @@ const IconLoader = ({ ...props }) => {
           gradientTransform="translate(16.0292 68.7353) rotate(-90) scale(65.8824 119.757)"
         >
           <stop stop-color="#b50838" />
-          <stop offset="1" stop-color="#e5809b" stop-opacity="0" />
+          <stop offset="1" stopColor="#e5809b" stopOpacity="0" />
         </radialGradient>
       </defs>
     </svg>
