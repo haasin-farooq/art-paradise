@@ -29,15 +29,13 @@ const DashboardPage = () => {
   return currentUser ? (
     <>
       <div className="mb-10 flex flex-col justify-between space-y-4 sm:flex-row sm:items-center sm:space-x-4 sm:space-y-0">
-        <h1 className="text-3xl font-medium">Claimed Art Works</h1>
+        <h1 className="text-3xl font-medium">Claimed Artworks</h1>
         <Button label="Search Art" onClick={() => router.push("/search")} />
       </div>
       {claimedArtWorks.length > 0 ? (
         <ArtWorksGrid artworks={claimedArtWorks} claimed onUnclaim={getData} />
       ) : (
-        <p className="text-art-gray-light">
-          You have no claimed art works yet.
-        </p>
+        <p className="text-art-gray-light">You have no claimed artworks yet.</p>
       )}
     </>
   ) : null;

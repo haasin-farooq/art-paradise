@@ -53,7 +53,7 @@ const SearchPage = () => {
     <>
       <div className="flex flex-col space-y-8">
         <Back />
-        <h1 className="text-3xl font-medium">Art Works</h1>
+        <h1 className="text-3xl font-medium">Artworks</h1>
         <ArtWorksGrid artworks={artworks} />
       </div>
       <div className="mt-10 flex flex-col items-center justify-center space-y-4">

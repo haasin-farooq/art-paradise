@@ -36,7 +36,7 @@ const ConfirmationDialog: FC<ConfirmationDialogProps> = ({
             <ReactDialog.Description className="text-art-gray-light">
               {claimed
                 ? "You can reclaim this art later if it's still available."
-                : "Claimed art works appear on the dashboard."}
+                : "Claimed artworks appear on the dashboard."}
             </ReactDialog.Description>
           </div>
           <div className="mt-8 grid grid-cols-2 gap-2">
