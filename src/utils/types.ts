@@ -2,7 +2,7 @@ export interface Art {
   id: number;
   title: string;
   thumbnail: {
-    lqip: string;
+    lqip?: string | null;
     alt_text?: string;
   };
   artist_display: string;

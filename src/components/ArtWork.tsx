@@ -66,12 +66,10 @@ export const ArtWork: FC<ArtWorkProps> = ({
       >
         <h2 className="text-lg font-medium">{art.title}</h2>
         <Image
-          src={imageUrl ?? art.thumbnail.lqip}
+          src={imageUrl ?? art.thumbnail?.lqip ?? ""}
           alt={`Thumbnail of ${art.title}`}
           width={300}
           height={200}
-          placeholder="blur"
-          blurDataURL={art.thumbnail.lqip}
           layout="responsive"
         />
         <p className="text-art-gray-light">{art.artist_display}</p>

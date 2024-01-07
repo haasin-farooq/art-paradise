@@ -40,7 +40,7 @@ const LoginPage = () => {
           alt="Login page artwork"
         />
       </div>
-      <div className="col-span-12 flex flex-col items-center space-y-8 p-8 sm:col-span-8 sm:justify-center sm:p-20">
+      <div className="col-span-12 mt-20 flex flex-col items-center justify-center space-y-8 p-8 sm:col-span-8 sm:mt-0 sm:p-20">
         <Image src={Logo} alt="Logo" width={100} height={100} />
         <h2 className="text-center text-2xl font-medium">
           Log in to your Art Paradise account

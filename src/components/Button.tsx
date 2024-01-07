@@ -25,12 +25,13 @@ const ButtonColorToStyles: Record<ButtonColor, string> = {
 export interface ButtonProps
   extends Omit<
     ButtonHTMLAttributes<HTMLButtonElement>,
-    "disabled" | "aria-label"
+    "className" | "disabled" | "aria-label"
   > {
   label: string;
   color?: ButtonColor;
   width?: ButtonWidth;
   disabled?: boolean;
+  className?: string;
 }
 
 export const Button: FC<ButtonProps> = ({
@@ -38,6 +39,7 @@ export const Button: FC<ButtonProps> = ({
   color = ButtonColor.PRIMARY,
   width = ButtonWidth.AUTO,
   disabled,
+  className = "",
   ...props
 }) => {
   return (
@@ -45,7 +47,9 @@ export const Button: FC<ButtonProps> = ({
       type="button"
       className={`flex items-center justify-center space-x-2 rounded-lg px-5 py-4 leading-tight shadow-black transition duration-100 sm:whitespace-nowrap ${
         disabled ? "cursor-not-allowed opacity-50" : "cursor-pointer"
-      } ${ButtonWidthToStyles[width]} ${ButtonColorToStyles[color]}`}
+      } ${ButtonWidthToStyles[width]} ${
+        ButtonColorToStyles[color]
+      } ${className}`}
       aria-label={label}
       disabled={disabled}
       {...props}

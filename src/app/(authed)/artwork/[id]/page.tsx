@@ -71,8 +71,8 @@ const ArtWorkPage: FC<ArtWorkPageProps> = ({ params }) => {
           id: art.id,
           title: art.title,
           thumbnail: {
-            lqip: art.thumbnail.lqip,
-            alt_text: art.thumbnail.alt_text,
+            lqip: art.thumbnail?.lqip,
+            alt_text: art.thumbnail?.alt_text,
           },
           artist_display: art.artist_display,
         });
@@ -95,8 +95,6 @@ const ArtWorkPage: FC<ArtWorkPageProps> = ({ params }) => {
           alt={`Thumbnail of ${art.title}`}
           className="absolute left-0 top-0 h-full w-full object-contain"
           fill
-          placeholder="blur"
-          blurDataURL={art.thumbnail.lqip}
         />
       </div>
       <div className="flex flex-col space-y-8 sm:flex-row sm:space-y-0">
@@ -113,20 +111,15 @@ const ArtWorkPage: FC<ArtWorkPageProps> = ({ params }) => {
         </div>
         <div className="divide basis-2/5 sm:border-l sm:pl-10">
           <Detail label="Origin" text={art.place_of_origin} />
-          <hr />
           <Detail label="Medium" text={art.medium_display} />
-          <hr />
           <Detail label="Dimensions" text={art.dimensions} />
-          <hr />
           <Detail label="Credit Line" text={art.credit_line} />
-          <hr />
           <Detail label="Reference No." text={art.main_reference_number} />
-          <hr />
           <Detail label="API" text={art.api_link} />
-          <hr className="mb-4" />
           <ConfirmationDialog
             triggerButton={
               <Button
+                className="mt-4"
                 label={`${isArtWorkClaimed ? "Unclaim" : "Claim"} Piece`}
                 width={ButtonWidth.FULL}
               />
@@ -148,12 +141,15 @@ interface DetailProps {
 
 const Detail: FC<DetailProps> = ({ label, text }) => {
   return text ? (
-    <div className="flex flex-col space-y-2 py-4 text-lg sm:flex-row sm:items-center sm:space-x-10 sm:space-y-0">
-      <p className="grow font-medium">{label}</p>
-      <p className="break-all text-art-gray-extra-light sm:text-right">
-        {text}
-      </p>
-    </div>
+    <>
+      <div className="flex flex-col space-y-2 py-4 text-lg sm:flex-row sm:items-center sm:space-x-10 sm:space-y-0">
+        <p className="grow font-medium">{label}</p>
+        <p className="break-all text-art-gray-extra-light sm:text-right">
+          {text}
+        </p>
+      </div>
+      <hr />
+    </>
   ) : null;
 };
 
