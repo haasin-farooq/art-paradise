@@ -22,7 +22,7 @@ export default async (
 
       if (user) {
         if (!user.art_works_claimed.map((art) => art.id).includes(art.id)) {
-          user.art_works_claimed.push(art);
+          user.art_works_claimed.unshift(art);
           await fs.promises.writeFile(filePath, JSON.stringify(users, null, 2));
           const { password, ...userData } = user;
           return res.status(200).json({

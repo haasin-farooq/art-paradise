@@ -7,7 +7,7 @@ import Input from "@/components/Input";
 
 import LoginImage from "../../assets/images/login-image.png";
 import Logo from "../../assets/images/logo.png";
-import { useEffect, useState } from "react";
+import { BaseSyntheticEvent, useEffect, useState } from "react";
 import { UserCredentials } from "@/utils/types";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
@@ -30,6 +30,11 @@ const LoginPage = () => {
     }
   }, [currentUser, router]);
 
+  const handleSubmit = (e: BaseSyntheticEvent) => {
+    e.preventDefault();
+    login(userCredentials);
+  };
+
   return currentUser ? null : (
     <div className="grid h-full grid-cols-12">
       <div className="relative col-span-4 hidden h-full min-h-screen sm:block">
@@ -45,7 +50,10 @@ const LoginPage = () => {
         <h2 className="text-center text-2xl font-medium">
           Log in to your Art Paradise account
         </h2>
-        <div className="flex w-full max-w-md flex-col space-y-3 sm:w-3/4">
+        <form
+          className="flex w-full max-w-md flex-col space-y-3 sm:w-3/4"
+          onSubmit={(e) => handleSubmit(e)}
+        >
           <Input
             type="email"
             placeholder="Enter email"
@@ -69,13 +77,13 @@ const LoginPage = () => {
             }
           />
           <Button
+            type="submit"
             label="Login"
             width={ButtonWidth.FULL}
             disabled={disabled}
-            onClick={() => login(userCredentials)}
           />
           <p className="text-red-500">{errorMessage}</p>
-        </div>
+        </form>
       </div>
     </div>
   );
