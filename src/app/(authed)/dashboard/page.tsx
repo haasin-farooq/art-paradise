@@ -14,15 +14,16 @@ const DashboardPage = () => {
 
   const [claimedArtWorks, setClaimedArtWorks] = useState<Art[]>([]);
 
-  useEffect(() => {
+  const getData = async () => {
     if (currentUser) {
-      const getData = async () => {
-        const res = await fetchUserData(currentUser);
-        const jsonRes = await res.json();
-        setClaimedArtWorks(jsonRes.data[0].art_works_claimed);
-      };
-      getData();
+      const res = await fetchUserData(currentUser);
+      const jsonRes = await res.json();
+      setClaimedArtWorks(jsonRes.data[0].art_works_claimed);
     }
+  };
+
+  useEffect(() => {
+    getData();
   }, [currentUser, router]);
 
   return currentUser ? (
@@ -32,7 +33,7 @@ const DashboardPage = () => {
         <Button label="Search Art" onClick={() => router.push("/search")} />
       </div>
       {claimedArtWorks.length > 0 ? (
-        <ArtWorksGrid artworks={claimedArtWorks} />
+        <ArtWorksGrid artworks={claimedArtWorks} claimed onUnclaim={getData} />
       ) : (
         <p className="text-art-gray-light">
           You haven't claimed any art works yet.

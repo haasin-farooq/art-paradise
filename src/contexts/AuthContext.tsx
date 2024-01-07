@@ -69,8 +69,6 @@ export const AuthProvider: FC<AuthContextProps> = ({ children }) => {
       const jsonRes = await res.json();
       const user = jsonRes.data[0];
 
-      console.log(user);
-
       if (res.ok) {
         localStorage.setItem("username", user.username);
         setCurrentUser(user.username);

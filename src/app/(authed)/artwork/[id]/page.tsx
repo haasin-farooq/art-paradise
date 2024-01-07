@@ -3,17 +3,27 @@
 import { Button, ButtonWidth } from "@/components/Button";
 import { useAuth } from "@/contexts/AuthContext";
 import IconArrowLeft from "@/svgs/icons/arrow-left";
-import { claimArt } from "@/utils/apis";
-import { ArtDetail } from "@/utils/types";
+import { claimArt, fetchUserData, unclaimArt } from "@/utils/apis";
+import { Art, ArtDetail } from "@/utils/types";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { FC, useEffect, useState } from "react";
 
-const getData = async (id: number) => {
+const getArtData = async (id: number) => {
   const res = await fetch(`https://api.artic.edu/api/v1/artworks/${id}`);
 
   if (!res.ok) {
-    throw new Error("Failed to fetch data");
+    throw new Error("Failed to fetch artwork data");
+  }
+
+  return res.json();
+};
+
+const getUserData = async (username: string) => {
+  const res = await fetchUserData(username);
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch user data");
   }
 
   return res.json();
@@ -28,16 +38,51 @@ const ArtWorkPage: FC<ArtWorkPageProps> = ({ params }) => {
   const router = useRouter();
 
   const [art, setArt] = useState<ArtDetail | null>(null);
+  const [claimedArtWorkIds, setClaimedArtWorkIds] = useState<number[]>([]);
+  const [loading, setLoading] = useState(false);
 
-  const imageUrl = `https://www.artic.edu/iiif/2/${art?.image_id}/full/843,/0/default.jpg`;
+  const fetchArtData = async () => {
+    const artData = await getArtData(params.id);
+    setArt(artData.data);
+  };
+
+  const fetchUserData = async () => {
+    if (currentUser) {
+      const userData = await getUserData(currentUser);
+      setClaimedArtWorkIds(
+        userData.data[0].art_works_claimed.map((art: Art) => art.id),
+      );
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      const res = await getData(params.id);
-      setArt(res.data);
-    };
-    fetchData();
+    fetchArtData();
+    fetchUserData();
   }, []);
+
+  const handleArtClaim = async (art: Art) => {
+    if (currentUser) {
+      setLoading(true);
+      if (isArtWorkClaimed) {
+        await unclaimArt(currentUser, art.id);
+      } else {
+        await claimArt(currentUser, {
+          id: art.id,
+          title: art.title,
+          thumbnail: {
+            lqip: art.thumbnail.lqip,
+            alt_text: art.thumbnail.alt_text,
+          },
+          artist_display: art.artist_display,
+        });
+      }
+      await fetchUserData();
+      setLoading(false);
+    }
+  };
+
+  const imageUrl = `https://www.artic.edu/iiif/2/${art?.image_id}/full/843,/0/default.jpg`;
+  const isArtWorkClaimed = art && claimedArtWorkIds.includes(art.id);
 
   return art ? (
     <div className="flex flex-col space-y-10">
@@ -83,23 +128,12 @@ const ArtWorkPage: FC<ArtWorkPageProps> = ({ params }) => {
           <hr />
           <Detail label="API" text={art.api_link} />
           <hr className="mb-4" />
-          {currentUser ? (
-            <Button
-              label="Claim Piece"
-              width={ButtonWidth.FULL}
-              onClick={() =>
-                claimArt(currentUser, {
-                  id: art.id,
-                  title: art.title,
-                  thumbnail: {
-                    lqip: art.thumbnail.lqip,
-                    alt_text: art.thumbnail.alt_text,
-                  },
-                  artist_display: art.artist_display,
-                })
-              }
-            />
-          ) : null}
+          <Button
+            label={`${isArtWorkClaimed ? "Unclaim" : "Claim"} Piece`}
+            width={ButtonWidth.FULL}
+            disabled={loading}
+            onClick={() => handleArtClaim(art)}
+          />
         </div>
       </div>
     </div>

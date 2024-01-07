@@ -19,6 +19,7 @@ const RootLayout: FC<RootLayoutProp> = ({ children }) => {
       router.push("/login");
     }
   }, [currentUser, router]);
+
   return currentUser ? (
     <>
       <Navbar />
