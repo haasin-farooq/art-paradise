@@ -4,51 +4,13 @@
     "email": "haasin.farooq@gmail.com",
     "password": "haasin123",
     "last_login_date": "2024-01-07T13:41:20.836Z",
-    "art_works_claimed": [
-      {
-        "id": 14572,
-        "title": "The Millinery Shop",
-        "thumbnail": {
-          "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAAEMtIk40KE83KlhHLVxELlNPN1hLMVJOP19UN1dYM1lUOVpUP2dAIWlKKHZKKXZLKWRNPGpbMGpaNGtaOkxUTF9dRlJaS15YSV5kUnZpRH12W4ZkM49uRI52VQAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUY4AUtFWZxHZIdExFEybAJQGE00sNQmqOEADs=",
-          "alt_text": "Impressionist painting of woman wearing green dress trying on hats."
-        },
-        "artist_display": "Edgar Degas\nFrench, 1834-1917"
-      },
-      {
-        "id": 11723,
-        "title": "Woman at Her Toilette",
-        "thumbnail": {
-          "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAAE9MQV1XRl5YRmNdT2JgVGplV3RtW3JsX35wXW9rYHl3cX17eYJ4a4+Hd4GBfoaDf4iEfY6JgYmKhZuXjZWSkJaSkJydlpqZmZqamp+dmpqbnamelqCemqShk6Cgm6ujnK6nn7m0rbSzsgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhwABDYnBYOgTFAvHAcA6JyIZyyQwAFZHGMykIPiEQpBEEADs=",
-          "alt_text": "Painted portrait dominated by loose, large brushstrokes of a woman, seen from the back, wearing a gauzy white off-the-shoulder dress and black choker, blond hair swept up, examining herself in a mirror at left. The background is a feathered swirl suggesting floral pattern in cool pale tones of gray, purple, pink, and blue."
-        },
-        "artist_display": "Berthe Morisot\nFrench, 1841-1895"
-      },
-      {
-        "id": 21977,
-        "title": "Melon-Shaped Ewer with Stylized Flowers",
-        "thumbnail": {
-          "lqip": "data:image/gif;base64,R0lGODlhBQAFAPQAAKWnorG0qL28tsPGrMbFyNHSztPUz9rez83N1dbV19bW29PT3tbW3tnZ397g1ePn0eDg3tra4tra49vb5ODg5+Pi6Obk6+Ti7Obl7QAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAFAAUAAAUVYHRZ2NRATqEwxxMgkjEAS5UIBBUCADs=",
-          "alt_text": "A work made of stoneware with celadon glaze and underglaze incised decoration."
-        },
-        "artist_display": "Korea"
-      }
-    ]
+    "art_works_claimed": []
   },
   {
     "username": "johndoe",
     "email": "john.doe@gmail.com",
     "password": "john123",
-    "last_login_date": "2024-01-07T03:40:08.324Z",
-    "art_works_claimed": [
-      {
-        "id": 7122,
-        "title": "Seated Boy",
-        "thumbnail": {
-          "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAANXCo9bDpdfDpdnEptjFptjFp9nGqdrGqtvGqtzIq9vIrNzJrOHMseHNseXRtwAAACH5BAAAAAAALAAAAAADAAUAAAQLsDmWDiIDFBGWMhEAOw==",
-          "alt_text": "A work made of graphite on cream laid paper."
-        },
-        "artist_display": "Max Beckmann\nGerman, 1884-1950"
-      }
-    ]
+    "last_login_date": "2024-01-07T15:49:21.961Z",
+    "art_works_claimed": []
   }
 ]
