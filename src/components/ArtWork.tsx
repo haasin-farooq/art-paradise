@@ -1,9 +1,11 @@
+"use client";
+
 import { Art } from "@/utils/types";
 import Image from "next/image";
 import Link from "next/link";
-import React, { FC } from "react";
+import { FC, useEffect, useState } from "react";
 
-async function getData(id: number) {
+const getData = async (id: number) => {
   const res = await fetch(
     `https://api.artic.edu/api/v1/artworks/${id}?fields=id,title,image_id`,
   );
@@ -13,16 +15,25 @@ async function getData(id: number) {
   }
 
   return res.json();
-}
+};
 
 interface ArtWorkProps {
   art: Art;
   className: string;
 }
 
-export const ArtWork: FC<ArtWorkProps> = async ({ art, className = "" }) => {
-  const data = await getData(art.id);
-  const imageUrl = `${data.config.iiif_url}/${data.data.image_id}/full/843,/0/default.jpg`;
+export const ArtWork: FC<ArtWorkProps> = ({ art, className = "" }) => {
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await getData(art.id);
+      setImageUrl(
+        `${res.config.iiif_url}/${res.data.image_id}/full/843,/0/default.jpg`,
+      );
+    };
+    fetchData();
+  }, []);
 
   return (
     <Link
@@ -31,7 +42,7 @@ export const ArtWork: FC<ArtWorkProps> = async ({ art, className = "" }) => {
     >
       <h2 className="text-lg font-medium">{art.title}</h2>
       <Image
-        src={imageUrl}
+        src={imageUrl ?? art.thumbnail.lqip}
         alt={`Thumbnail of ${art.title}`}
         width={300}
         height={200}

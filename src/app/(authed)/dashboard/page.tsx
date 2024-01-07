@@ -1,24 +1,43 @@
 "use client";
 
+import { ArtWorksGrid } from "@/components/ArtWorksGrid";
 import { Button } from "@/components/Button";
 import { useAuth } from "@/contexts/AuthContext";
+import { fetchUserData } from "@/utils/apis";
+import { Art } from "@/utils/types";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const DashboardPage = () => {
   const router = useRouter();
   const { currentUser } = useAuth();
 
+  const [claimedArtWorks, setClaimedArtWorks] = useState<Art[]>([]);
+
   useEffect(() => {
-    if (!currentUser) {
-      router.push("/login");
+    if (currentUser) {
+      const getData = async () => {
+        const res = await fetchUserData(currentUser);
+        const jsonRes = await res.json();
+        setClaimedArtWorks(jsonRes.data[0].art_works_claimed);
+      };
+      getData();
     }
   }, [currentUser, router]);
 
   return currentUser ? (
     <>
-      <h1 className="mb-8 text-3xl font-medium">Dashboard</h1>
-      <Button label="Search Art" onClick={() => router.push("/search")} />
+      <div className="mb-10 flex flex-col justify-between space-y-4 sm:flex-row sm:items-center sm:space-x-4 sm:space-y-0">
+        <h1 className="text-3xl font-medium">Claimed Art Works</h1>
+        <Button label="Search Art" onClick={() => router.push("/search")} />
+      </div>
+      {claimedArtWorks.length > 0 ? (
+        <ArtWorksGrid artworks={claimedArtWorks} />
+      ) : (
+        <p className="text-art-gray-light">
+          You haven't claimed any art works yet.
+        </p>
+      )}
     </>
   ) : null;
 };

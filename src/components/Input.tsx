@@ -1,6 +1,3 @@
-"use client";
-
-import React from "react";
 import type { ChangeEventHandler, InputHTMLAttributes } from "react";
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {

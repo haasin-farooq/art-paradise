@@ -8,7 +8,7 @@ import Input from "@/components/Input";
 import LoginImage from "../../assets/images/login-image.png";
 import Logo from "../../assets/images/logo.png";
 import { useEffect, useState } from "react";
-import { User } from "@/utils/types";
+import { UserCredentials } from "@/utils/types";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 
@@ -16,15 +16,13 @@ const LoginPage = () => {
   const router = useRouter();
   const { currentUser, isLoading, login, errorMessage } = useAuth();
 
-  const [userInfo, setUserInfo] = useState<User>({
-    username: "",
+  const [userCredentials, setUserCredentials] = useState<UserCredentials>({
     email: "",
     password: "",
-    last_login_date: null,
   });
 
   const disabled =
-    !userInfo.username || !userInfo.email || !userInfo.password || isLoading;
+    !userCredentials.email || !userCredentials.password || isLoading;
 
   useEffect(() => {
     if (currentUser) {
@@ -49,23 +47,12 @@ const LoginPage = () => {
         </h2>
         <div className="flex w-full max-w-md flex-col space-y-3 sm:w-3/4">
           <Input
-            type="text"
-            placeholder="Enter username"
-            value={userInfo.username}
-            onChange={(e) =>
-              setUserInfo({
-                ...userInfo,
-                username: e.target.value,
-              })
-            }
-          />
-          <Input
             type="email"
             placeholder="Enter email"
-            value={userInfo.email}
+            value={userCredentials.email}
             onChange={(e) =>
-              setUserInfo({
-                ...userInfo,
+              setUserCredentials({
+                ...userCredentials,
                 email: e.target.value,
               })
             }
@@ -73,10 +60,10 @@ const LoginPage = () => {
           <Input
             type="password"
             placeholder="Enter password"
-            value={userInfo.password}
+            value={userCredentials.password}
             onChange={(e) =>
-              setUserInfo({
-                ...userInfo,
+              setUserCredentials({
+                ...userCredentials,
                 password: e.target.value,
               })
             }
@@ -85,7 +72,7 @@ const LoginPage = () => {
             label="Login"
             width={ButtonWidth.FULL}
             disabled={disabled}
-            onClick={() => login(userInfo)}
+            onClick={() => login(userCredentials)}
           />
           <p className="text-red-500">{errorMessage}</p>
         </div>

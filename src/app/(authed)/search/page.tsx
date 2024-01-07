@@ -1,8 +1,8 @@
-import { ArtWork } from "@/components/ArtWork";
+import { ArtWorksGrid } from "@/components/ArtWorksGrid";
 import { Art } from "@/utils/types";
 import React from "react";
 
-async function getData() {
+const getData = async () => {
   const res = await fetch("https://api.artic.edu/api/v1/artworks");
 
   if (!res.ok) {
@@ -10,20 +10,16 @@ async function getData() {
   }
 
   return res.json();
-}
+};
 
 const SearchPage = async () => {
-  const data = await getData();
-  const artworks: Art[] = data.data;
+  const res = await getData();
+  const artworks: Art[] = res.data;
 
   return (
     <>
       <h1 className="mb-8 text-3xl font-medium">Art Works</h1>
-      <div className="columns-1 gap-4 space-y-4 sm:columns-2 md:columns-3 lg:columns-4">
-        {artworks.map((art) => (
-          <ArtWork key={art.id} className="break-inside-avoid" art={art} />
-        ))}
-      </div>
+      <ArtWorksGrid artworks={artworks} />
     </>
   );
 };

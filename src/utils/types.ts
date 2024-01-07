@@ -1,17 +1,8 @@
-export interface User {
-  username: string;
-  email: string;
-  password: string;
-  last_login_date: string | null;
-}
-
 export interface Art {
   id: number;
   title: string;
   thumbnail: {
     lqip: string;
-    width: number;
-    height: number;
     alt_text?: string;
   };
   artist_display: string;
@@ -28,4 +19,20 @@ export interface ArtDetail extends Art {
   api_link: string;
   description: string | null;
   place_of_origin: string;
+}
+
+export interface UserCredentials {
+  email: string;
+  password: string;
+}
+
+export interface User extends UserCredentials {
+  username: string;
+  last_login_date: string | null;
+  art_works_claimed: Art[];
+}
+
+export interface APIResponse {
+  data: Omit<User, "password">[];
+  message: string;
 }

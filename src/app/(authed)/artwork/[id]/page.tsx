@@ -1,11 +1,15 @@
-import { Button } from "@/components/Button";
+"use client";
+
+import { Button, ButtonWidth } from "@/components/Button";
+import { useAuth } from "@/contexts/AuthContext";
 import IconArrowLeft from "@/svgs/icons/arrow-left";
+import { claimArt } from "@/utils/apis";
 import { ArtDetail } from "@/utils/types";
 import Image from "next/image";
-import Link from "next/link";
-import React, { FC } from "react";
+import { useRouter } from "next/navigation";
+import React, { FC, useEffect, useState } from "react";
 
-async function getData(id: number) {
+const getData = async (id: number) => {
   const res = await fetch(`https://api.artic.edu/api/v1/artworks/${id}`);
 
   if (!res.ok) {
@@ -13,26 +17,37 @@ async function getData(id: number) {
   }
 
   return res.json();
-}
+};
 
 interface ArtWorkPageProps {
   params: { id: number };
 }
 
-const ArtWorkPage: FC<ArtWorkPageProps> = async ({ params }) => {
-  const data = await getData(params.id);
-  const art: ArtDetail = data.data;
-  const imageUrl = `https://www.artic.edu/iiif/2/${art.image_id}/full/843,/0/default.jpg`;
+const ArtWorkPage: FC<ArtWorkPageProps> = ({ params }) => {
+  const { currentUser } = useAuth();
+  const router = useRouter();
 
-  return (
+  const [art, setArt] = useState<ArtDetail | null>(null);
+
+  const imageUrl = `https://www.artic.edu/iiif/2/${art?.image_id}/full/843,/0/default.jpg`;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await getData(params.id);
+      setArt(res.data);
+    };
+    fetchData();
+  }, []);
+
+  return art ? (
     <div className="flex flex-col space-y-10">
-      <Link
-        href="/search"
+      <button
         className="flex items-center space-x-2 text-art-gray-light"
+        onClick={() => router.back()}
       >
         <IconArrowLeft className="h-6 w-6" />
-        <span>Back to artworks</span>
-      </Link>
+        <span>Back</span>
+      </button>
       <div className="sm:pb-50% pb-80% relative w-full">
         <Image
           src={imageUrl}
@@ -67,10 +82,28 @@ const ArtWorkPage: FC<ArtWorkPageProps> = async ({ params }) => {
           <Detail label="Reference No." text={art.main_reference_number} />
           <hr />
           <Detail label="API" text={art.api_link} />
+          <hr className="mb-4" />
+          {currentUser ? (
+            <Button
+              label="Claim Piece"
+              width={ButtonWidth.FULL}
+              onClick={() =>
+                claimArt(currentUser, {
+                  id: art.id,
+                  title: art.title,
+                  thumbnail: {
+                    lqip: art.thumbnail.lqip,
+                    alt_text: art.thumbnail.alt_text,
+                  },
+                  artist_display: art.artist_display,
+                })
+              }
+            />
+          ) : null}
         </div>
       </div>
     </div>
-  );
+  ) : null;
 };
 
 interface DetailProps {

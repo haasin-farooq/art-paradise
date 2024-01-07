@@ -3,12 +3,24 @@
     "username": "haasinfarooq",
     "email": "haasin.farooq@gmail.com",
     "password": "haasin123",
-    "last_login_date": "2024-01-06T20:26:02.703Z"
+    "last_login_date": "2024-01-07T00:45:29.438Z",
+    "art_works_claimed": [
+      {
+        "id": 14572,
+        "title": "The Millinery Shop",
+        "thumbnail": {
+          "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAAEMtIk40KE83KlhHLVxELlNPN1hLMVJOP19UN1dYM1lUOVpUP2dAIWlKKHZKKXZLKWRNPGpbMGpaNGtaOkxUTF9dRlJaS15YSV5kUnZpRH12W4ZkM49uRI52VQAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUY4AUtFWZxHZIdExFEybAJQGE00sNQmqOEADs=",
+          "alt_text": "Impressionist painting of woman wearing green dress trying on hats."
+        },
+        "artist_display": "Edgar Degas\nFrench, 1834-1917"
+      }
+    ]
   },
   {
     "username": "johndoe",
     "email": "john.doe@gmail.com",
     "password": "john123",
-    "last_login_date": "2024-01-06T14:46:09.073Z"
+    "last_login_date": "2024-01-06T14:46:09.073Z",
+    "art_works_claimed": []
   }
 ]

@@ -1,7 +1,7 @@
 "use client";
 
-import { loginUser } from "@/utils/auth";
-import { User } from "@/utils/types";
+import { loginUser } from "@/utils/apis";
+import { UserCredentials } from "@/utils/types";
 import { useRouter } from "next/navigation";
 import {
   createContext,
@@ -15,7 +15,7 @@ import {
 interface AuthContext {
   currentUser: string | null;
   isLoading: boolean;
-  login: (user: User) => void;
+  login: (credentials: UserCredentials) => void;
   logout: () => void;
   errorMessage: string | null;
 }
@@ -60,21 +60,24 @@ export const AuthProvider: FC<AuthContextProps> = ({ children }) => {
     setIsLoading(false);
   }, []);
 
-  const login = async (user: User) => {
+  const login = async (credentials: UserCredentials) => {
     setErrorMessage(null);
     setIsLoading(true);
 
     try {
-      const res = await loginUser(user);
-      const data = await res.json();
+      const res = await loginUser(credentials);
+      const jsonRes = await res.json();
+      const user = jsonRes.data[0];
+
+      console.log(user);
 
       if (res.ok) {
         localStorage.setItem("username", user.username);
         setCurrentUser(user.username);
         router.push("/dashboard");
       } else {
-        console.error(data.message);
-        setErrorMessage(data.message);
+        console.error(jsonRes.message);
+        setErrorMessage(jsonRes.message);
         setCurrentUser(null);
       }
     } catch (error) {

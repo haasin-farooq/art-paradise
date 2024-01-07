@@ -1,4 +1,3 @@
-import React from "react";
 import { ButtonHTMLAttributes, FC } from "react";
 
 export enum ButtonWidth {
@@ -8,7 +7,7 @@ export enum ButtonWidth {
 
 const ButtonWidthToStyles: Record<ButtonWidth, string> = {
   [ButtonWidth.FULL]: "flex w-full",
-  [ButtonWidth.AUTO]: "inline-flex",
+  [ButtonWidth.AUTO]: "w-fit",
 };
 export interface ButtonProps
   extends Omit<

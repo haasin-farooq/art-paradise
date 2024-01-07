@@ -40,7 +40,7 @@ export const Navbar = () => {
         <div ref={menuRef} className="relative">
           <button
             className="flex h-9 w-9 items-center justify-center rounded-full bg-art-primary p-2 leading-none text-white outline-none"
-            onClick={() => setIsMenuOpen(true)}
+            onClick={() => setIsMenuOpen((prevState) => !prevState)}
           >
             {userNameInitial}
           </button>
