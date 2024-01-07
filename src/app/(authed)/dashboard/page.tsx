@@ -2,7 +2,6 @@
 
 import { ArtWorksGrid } from "@/components/ArtWorksGrid";
 import { Button } from "@/components/Button";
-import Loader from "@/components/Loader";
 import { useAuth } from "@/contexts/AuthContext";
 import { fetchUserData } from "@/utils/apis";
 import { Art } from "@/utils/types";
@@ -13,16 +12,13 @@ const DashboardPage = () => {
   const router = useRouter();
   const { currentUser } = useAuth();
 
-  const [loading, setLoading] = useState(false);
   const [claimedArtWorks, setClaimedArtWorks] = useState<Art[]>([]);
 
   const getData = async () => {
     if (currentUser) {
-      setLoading(true);
       const res = await fetchUserData(currentUser);
       const jsonRes = await res.json();
       setClaimedArtWorks(jsonRes.data[0].art_works_claimed);
-      setLoading(false);
     }
   };
 
