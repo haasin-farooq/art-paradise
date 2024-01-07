@@ -39,9 +39,9 @@ export const fetchUserData = async (username: string): Promise<Response> => {
 };
 
 /**
- * Claim an art piece for the user.
+ * Claim an artwork for the user.
  * @param username - The username of the user.
- * @param art - The art piece to claim.
+ * @param art - The artwork to claim.
  * @returns A promise that resolves to the fetch response.
  */
 export const claimArt = async (
@@ -63,9 +63,9 @@ export const claimArt = async (
 };
 
 /**
- * Unclaim a claimed art piece for the user.
+ * Unclaim a claimed artwork for the user.
  * @param username - The username of the user.
- * @param artId - The ID of the art piece to unclaim.
+ * @param artId - The ID of the artwork to unclaim.
  * @returns A promise that resolves to the fetch response.
  */
 export const unclaimArt = async (

@@ -45,7 +45,7 @@ export const Button: FC<ButtonProps> = ({
   return (
     <button
       type="button"
-      className={`flex items-center justify-center space-x-2 rounded-lg px-5 py-4 leading-tight shadow-black transition duration-100 sm:whitespace-nowrap ${
+      className={`flex items-center justify-center space-x-2 rounded-lg px-5 py-4 leading-tight transition duration-100 sm:whitespace-nowrap ${
         disabled ? "cursor-not-allowed opacity-50" : "cursor-pointer"
       } ${ButtonWidthToStyles[width]} ${
         ButtonColorToStyles[color]

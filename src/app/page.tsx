@@ -4,16 +4,20 @@ import { useAuth } from "@/contexts/AuthContext";
 import { redirect } from "next/navigation";
 import { useEffect } from "react";
 
-export default function Home() {
-  const { currentUser } = useAuth();
+const HomePage = () => {
+  const { currentUser, isLoading } = useAuth();
 
   useEffect(() => {
-    if (currentUser) {
-      redirect("/dashboard");
-    } else {
-      redirect("/login");
+    if (!isLoading) {
+      if (currentUser) {
+        redirect("/dashboard");
+      } else {
+        redirect("/login");
+      }
     }
-  }, [currentUser]);
+  }, [currentUser, isLoading]);
 
   return <></>;
-}
+};
+
+export default HomePage;

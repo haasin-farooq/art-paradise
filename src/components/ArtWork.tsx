@@ -12,38 +12,39 @@ const getData = async (id: number) => {
   const res = await fetch(
     `https://api.artic.edu/api/v1/artworks/${id}?fields=id,title,image_id`,
   );
-
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
-
   return res.json();
 };
 
-interface ArtWorkProps {
+interface ArtworkProps {
   art: Art;
-  claimed?: boolean;
   onUnclaim?: () => void;
   className: string;
 }
 
-export const ArtWork: FC<ArtWorkProps> = ({
+export const Artwork: FC<ArtworkProps> = ({
   art,
-  claimed,
   onUnclaim,
   className = "",
 }) => {
   const { currentUser } = useAuth();
 
   const [imageUrl, setImageUrl] = useState<string | null>(null);
-  const [showConfirmationDialog, setShowConfirmationDialog] = useState(false);
+
+  const isClaimed = !!onUnclaim;
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await getData(art.id);
-      setImageUrl(
-        `${res.config.iiif_url}/${res.data.image_id}/full/843,/0/default.jpg`,
-      );
+      try {
+        const res = await getData(art.id);
+        setImageUrl(
+          `${res.config.iiif_url}/${res.data.image_id}/full/843,/0/default.jpg`,
+        );
+      } catch (e) {
+        console.warn(e);
+      }
     };
     fetchData();
   }, []);
@@ -51,8 +52,12 @@ export const ArtWork: FC<ArtWorkProps> = ({
   const handleUnclaim = async (e?: BaseSyntheticEvent) => {
     e?.preventDefault();
     if (currentUser) {
-      await unclaimArt(currentUser, art.id);
-      onUnclaim?.();
+      try {
+        await unclaimArt(currentUser, art.id);
+        onUnclaim?.();
+      } catch (e) {
+        console.warn(e);
+      }
     }
   };
 
@@ -74,7 +79,7 @@ export const ArtWork: FC<ArtWorkProps> = ({
         />
         <p className="text-art-gray-light">{art.artist_display}</p>
       </Link>
-      {claimed ? (
+      {isClaimed ? (
         <ConfirmationDialog
           triggerButton={
             <button className="px-4 pb-4 text-start text-red-500 underline">

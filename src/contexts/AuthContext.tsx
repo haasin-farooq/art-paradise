@@ -78,8 +78,8 @@ export const AuthProvider: FC<AuthContextProps> = ({ children }) => {
         setErrorMessage(jsonRes.message);
         setCurrentUser(null);
       }
-    } catch (error) {
-      console.error(error);
+    } catch (e) {
+      console.error(e);
     } finally {
       setIsLoading(false);
     }

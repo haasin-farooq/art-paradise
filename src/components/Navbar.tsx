@@ -14,7 +14,7 @@ export const Navbar = () => {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const userNameInitial = currentUser?.[0].toUpperCase();
+  const usernameInitial = currentUser?.[0].toUpperCase();
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -32,7 +32,6 @@ export const Navbar = () => {
 
   return (
     <>
-      {" "}
       <nav className="fixed top-0 z-10 flex h-20 w-full items-center justify-between space-x-4 border-b border-art-gray-stroke bg-white p-4 sm:px-6">
         <Link href="/" className="cursor-pointer">
           <Image src={Logo} alt="Logo" width={80} height={80} />
@@ -44,7 +43,7 @@ export const Navbar = () => {
               className="flex h-9 w-9 items-center justify-center rounded-full bg-art-primary p-2 leading-none text-white outline-none"
               onClick={() => setIsMenuOpen((prevState) => !prevState)}
             >
-              {userNameInitial}
+              {usernameInitial}
             </button>
             {isMenuOpen ? (
               <div

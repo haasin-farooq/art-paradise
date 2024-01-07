@@ -13,7 +13,7 @@ export default async (
 ) => {
   if (req.method === "POST") {
     try {
-      const { username, email, password } = req.body;
+      const { email, password } = req.body;
 
       const jsonData = await fs.promises.readFile(filePath, "utf8");
       const users: User[] = JSON.parse(jsonData);
