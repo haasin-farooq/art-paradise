@@ -13,6 +13,15 @@
           "alt_text": "Impressionist painting of woman wearing green dress trying on hats."
         },
         "artist_display": "Edgar Degas\nFrench, 1834-1917"
+      },
+      {
+        "id": 11294,
+        "title": "Half-Length Female Nude",
+        "thumbnail": {
+          "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAFlRTWpjXGtkXHJoX3VoY3drYnZsY3BqZHNrZHNvZ3lvZXNwaHNxaXZybH93a3l1bYZ+c4+CdZOCc5WGeAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAUR4NMIEHMASxIUDmJMETFISggAOw==",
+          "alt_text": "A work made of oil on canvas."
+        },
+        "artist_display": "Pablo Picasso\nSpanish, active France, 1881–1973"
       }
     ]
   },
@@ -20,7 +29,17 @@
     "username": "johndoe",
     "email": "john.doe@gmail.com",
     "password": "john123",
-    "last_login_date": "2024-01-06T14:46:09.073Z",
-    "art_works_claimed": []
+    "last_login_date": "2024-01-07T03:40:08.324Z",
+    "art_works_claimed": [
+      {
+        "id": 7122,
+        "title": "Seated Boy",
+        "thumbnail": {
+          "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAANXCo9bDpdfDpdnEptjFptjFp9nGqdrGqtvGqtzIq9vIrNzJrOHMseHNseXRtwAAACH5BAAAAAAALAAAAAADAAUAAAQLsDmWDiIDFBGWMhEAOw==",
+          "alt_text": "A work made of graphite on cream laid paper."
+        },
+        "artist_display": "Max Beckmann\nGerman, 1884-1950"
+      }
+    ]
   }
 ]

@@ -1,26 +1,43 @@
+"use client";
+
 import { ArtWorksGrid } from "@/components/ArtWorksGrid";
+import { Back } from "@/components/Back";
+import { fetchClaimedArtworkIds } from "@/utils/apis";
 import { Art } from "@/utils/types";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const getData = async () => {
-  const res = await fetch("https://api.artic.edu/api/v1/artworks");
+const SearchPage = () => {
+  const [artworks, setArtworks] = useState<Art[]>([]);
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
+  useEffect(() => {
+    const getData = async () => {
+      const claimedArtworksRes = await fetchClaimedArtworkIds();
+      if (!claimedArtworksRes.ok) {
+        throw new Error("Failed to fetch claimed artworks");
+      }
+      const artworkIds = await claimedArtworksRes.json();
 
-  return res.json();
-};
+      const artworksRes = await fetch("https://api.artic.edu/api/v1/artworks");
+      if (!artworksRes.ok) {
+        throw new Error("Failed to fetch artworks");
+      }
+      const artworksData = await artworksRes.json();
 
-const SearchPage = async () => {
-  const res = await getData();
-  const artworks: Art[] = res.data;
+      const data = artworksData.data.filter(
+        (artwork: Art) => !artworkIds.includes(artwork.id),
+      );
+
+      setArtworks(data);
+    };
+    getData();
+  }, []);
 
   return (
-    <>
-      <h1 className="mb-8 text-3xl font-medium">Art Works</h1>
+    <div className="flex flex-col space-y-8">
+      <Back />
+      <h1 className="text-3xl font-medium">Art Works</h1>
       <ArtWorksGrid artworks={artworks} />
-    </>
+    </div>
   );
 };
 

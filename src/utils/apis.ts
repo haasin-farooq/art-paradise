@@ -85,3 +85,18 @@ export const unclaimArt = async (
 
   return res;
 };
+
+/**
+ * Fetch IDs of artworks that are claimed by users.
+ * @returns A promise that resolves to the fetch response.
+ */
+export const fetchClaimedArtworkIds = async (): Promise<Response> => {
+  const res = await fetch("/api/claimed-artworks", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  return res;
+};

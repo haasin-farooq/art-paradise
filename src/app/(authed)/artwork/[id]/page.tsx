@@ -1,8 +1,8 @@
 "use client";
 
+import { Back } from "@/components/Back";
 import { Button, ButtonWidth } from "@/components/Button";
 import { useAuth } from "@/contexts/AuthContext";
-import IconArrowLeft from "@/svgs/icons/arrow-left";
 import { claimArt, fetchUserData, unclaimArt } from "@/utils/apis";
 import { Art, ArtDetail } from "@/utils/types";
 import Image from "next/image";
@@ -11,21 +11,17 @@ import React, { FC, useEffect, useState } from "react";
 
 const getArtData = async (id: number) => {
   const res = await fetch(`https://api.artic.edu/api/v1/artworks/${id}`);
-
   if (!res.ok) {
     throw new Error("Failed to fetch artwork data");
   }
-
   return res.json();
 };
 
 const getUserData = async (username: string) => {
   const res = await fetchUserData(username);
-
   if (!res.ok) {
     throw new Error("Failed to fetch user data");
   }
-
   return res.json();
 };
 
@@ -86,13 +82,7 @@ const ArtWorkPage: FC<ArtWorkPageProps> = ({ params }) => {
 
   return art ? (
     <div className="flex flex-col space-y-10">
-      <button
-        className="flex items-center space-x-2 text-art-gray-light"
-        onClick={() => router.back()}
-      >
-        <IconArrowLeft className="h-6 w-6" />
-        <span>Back</span>
-      </button>
+      <Back />
       <div className="sm:pb-50% pb-80% relative w-full">
         <Image
           src={imageUrl}
