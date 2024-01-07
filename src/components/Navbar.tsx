@@ -31,37 +31,41 @@ export const Navbar = () => {
   }, [isMenuOpen]);
 
   return (
-    <nav className="fixed top-0 z-10 flex h-20 w-full items-center justify-between space-x-4 border-b border-art-gray-stroke bg-white p-4 sm:px-6">
-      <Link href="/" className="cursor-pointer">
-        <Image src={Logo} alt="Logo" width={80} height={80} />
-      </Link>
-      <div className="flex items-center space-x-4">
-        <p className="text-art-gray-light">{currentUser}</p>
-        <div ref={menuRef} className="relative">
-          <button
-            className="flex h-9 w-9 items-center justify-center rounded-full bg-art-primary p-2 leading-none text-white outline-none"
-            onClick={() => setIsMenuOpen((prevState) => !prevState)}
-          >
-            {userNameInitial}
-          </button>
-          {isMenuOpen ? (
-            <div
-              className="absolute right-0 top-full mt-2 min-w-36 rounded-md border bg-white p-2 shadow-sm"
-              role="menu"
-              aria-orientation="vertical"
-              aria-labelledby="article-options"
+    <>
+      {" "}
+      <nav className="fixed top-0 z-10 flex h-20 w-full items-center justify-between space-x-4 border-b border-art-gray-stroke bg-white p-4 sm:px-6">
+        <Link href="/" className="cursor-pointer">
+          <Image src={Logo} alt="Logo" width={80} height={80} />
+        </Link>
+        <div className="flex items-center space-x-4">
+          <p className="text-art-gray-light">{currentUser}</p>
+          <div ref={menuRef} className="relative">
+            <button
+              className="flex h-9 w-9 items-center justify-center rounded-full bg-art-primary p-2 leading-none text-white outline-none"
+              onClick={() => setIsMenuOpen((prevState) => !prevState)}
             >
-              <button
-                className="hover:bg-art-gray-hover flex w-full items-center space-x-2 rounded-md px-3 py-2"
-                onClick={logout}
+              {userNameInitial}
+            </button>
+            {isMenuOpen ? (
+              <div
+                className="absolute right-0 top-full mt-2 min-w-36 rounded-md border bg-white p-2 shadow-sm"
+                role="menu"
+                aria-orientation="vertical"
+                aria-labelledby="article-options"
               >
-                <IconLogout className="h-5 w-5" />
-                <span>Logout</span>
-              </button>
-            </div>
-          ) : null}
+                <button
+                  className="hover:bg-art-gray-hover flex w-full items-center space-x-2 rounded-md px-3 py-2"
+                  onClick={logout}
+                >
+                  <IconLogout className="h-5 w-5" />
+                  <span>Logout</span>
+                </button>
+              </div>
+            ) : null}
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+      <div className="h-20">&nbsp;</div>
+    </>
   );
 };

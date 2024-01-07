@@ -23,7 +23,7 @@ const RootLayout: FC<RootLayoutProp> = ({ children }) => {
   return currentUser ? (
     <>
       <Navbar />
-      <div className="mt-20 min-h-[calc(100vh-80px)] w-full max-w-7xl px-4 py-6 sm:mx-auto sm:px-6 sm:py-8">
+      <div className="min-h-[calc(100vh-80px)] w-full max-w-7xl px-4 py-6 sm:mx-auto sm:px-6 sm:py-8">
         {children}
       </div>
     </>
