@@ -1,16 +1,16 @@
 [
   {
-    "username": "haasinfarooq",
-    "email": "haasin.farooq@gmail.com",
-    "password": "haasin123",
-    "last_login_date": "2024-01-07T13:41:20.836Z",
+    "username": "bobsmith",
+    "email": "bob.smith@gmail.com",
+    "password": "bob123",
+    "last_login_date": null,
     "art_works_claimed": []
   },
   {
     "username": "johndoe",
     "email": "john.doe@gmail.com",
     "password": "john123",
-    "last_login_date": "2024-01-07T15:49:21.961Z",
+    "last_login_date": null,
     "art_works_claimed": []
   }
 ]
