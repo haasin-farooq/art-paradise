@@ -6,6 +6,7 @@ import { Art } from "@/utils/types";
 import Image from "next/image";
 import Link from "next/link";
 import { BaseSyntheticEvent, FC, useEffect, useState } from "react";
+import ConfirmationDialog from "./ConfirmationDialog";
 
 const getData = async (id: number) => {
   const res = await fetch(
@@ -35,6 +36,7 @@ export const ArtWork: FC<ArtWorkProps> = ({
   const { currentUser } = useAuth();
 
   const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const [showConfirmationDialog, setShowConfirmationDialog] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,8 +48,8 @@ export const ArtWork: FC<ArtWorkProps> = ({
     fetchData();
   }, []);
 
-  const handleUnclaim = async (e: BaseSyntheticEvent) => {
-    e.preventDefault();
+  const handleUnclaim = async (e?: BaseSyntheticEvent) => {
+    e?.preventDefault();
     if (currentUser) {
       await unclaimArt(currentUser, art.id);
       onUnclaim?.();
@@ -56,7 +58,7 @@ export const ArtWork: FC<ArtWorkProps> = ({
 
   return (
     <div
-      className={`hover:bg-art-gray-hover rounded-md border border-art-gray-stroke bg-white shadow-md transition duration-100 ${className}`}
+      className={`rounded-md border border-art-gray-stroke bg-white shadow-md transition duration-100 hover:bg-art-gray-hover ${className}`}
     >
       <Link
         href={`/artwork/${art.id}`}
@@ -75,12 +77,15 @@ export const ArtWork: FC<ArtWorkProps> = ({
         <p className="text-art-gray-light">{art.artist_display}</p>
       </Link>
       {claimed ? (
-        <button
-          className="px-4 pb-4 text-start text-red-500 underline"
-          onClick={(e) => handleUnclaim(e)}
-        >
-          Unclaim
-        </button>
+        <ConfirmationDialog
+          triggerButton={
+            <button className="px-4 pb-4 text-start text-red-500 underline">
+              Unclaim
+            </button>
+          }
+          claimed
+          onConfirm={(e) => handleUnclaim(e)}
+        />
       ) : null}
     </div>
   );

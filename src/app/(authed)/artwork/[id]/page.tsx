@@ -2,11 +2,12 @@
 
 import { Back } from "@/components/Back";
 import { Button, ButtonWidth } from "@/components/Button";
+import ConfirmationDialog from "@/components/ConfirmationDialog";
+import Loader from "@/components/Loader";
 import { useAuth } from "@/contexts/AuthContext";
 import { claimArt, fetchUserData, unclaimArt } from "@/utils/apis";
 import { Art, ArtDetail } from "@/utils/types";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import React, { FC, useEffect, useState } from "react";
 
 const getArtData = async (id: number) => {
@@ -31,7 +32,6 @@ interface ArtWorkPageProps {
 
 const ArtWorkPage: FC<ArtWorkPageProps> = ({ params }) => {
   const { currentUser } = useAuth();
-  const router = useRouter();
 
   const [art, setArt] = useState<ArtDetail | null>(null);
   const [claimedArtWorkIds, setClaimedArtWorkIds] = useState<number[]>([]);
@@ -51,14 +51,19 @@ const ArtWorkPage: FC<ArtWorkPageProps> = ({ params }) => {
     }
   };
 
+  const fetchFullData = async () => {
+    setLoading(true);
+    await fetchArtData();
+    await fetchUserData();
+    setLoading(false);
+  };
+
   useEffect(() => {
-    fetchArtData();
-    fetchUserData();
+    fetchFullData();
   }, []);
 
   const handleArtClaim = async (art: Art) => {
     if (currentUser) {
-      setLoading(true);
       if (isArtWorkClaimed) {
         await unclaimArt(currentUser, art.id);
       } else {
@@ -73,17 +78,18 @@ const ArtWorkPage: FC<ArtWorkPageProps> = ({ params }) => {
         });
       }
       await fetchUserData();
-      setLoading(false);
     }
   };
 
   const imageUrl = `https://www.artic.edu/iiif/2/${art?.image_id}/full/843,/0/default.jpg`;
   const isArtWorkClaimed = art && claimedArtWorkIds.includes(art.id);
 
-  return art ? (
+  return loading ? (
+    <Loader />
+  ) : art ? (
     <div className="flex flex-col space-y-10">
       <Back />
-      <div className="sm:pb-50% pb-80% relative w-full">
+      <div className="relative w-full pb-80% sm:pb-50%">
         <Image
           src={imageUrl}
           alt={`Thumbnail of ${art.title}`}
@@ -118,11 +124,16 @@ const ArtWorkPage: FC<ArtWorkPageProps> = ({ params }) => {
           <hr />
           <Detail label="API" text={art.api_link} />
           <hr className="mb-4" />
-          <Button
-            label={`${isArtWorkClaimed ? "Unclaim" : "Claim"} Piece`}
-            width={ButtonWidth.FULL}
-            disabled={loading}
-            onClick={() => handleArtClaim(art)}
+          <ConfirmationDialog
+            triggerButton={
+              <Button
+                label={`${isArtWorkClaimed ? "Unclaim" : "Claim"} Piece`}
+                width={ButtonWidth.FULL}
+              />
+            }
+            claimed={!!isArtWorkClaimed}
+            onConfirm={() => handleArtClaim(art)}
+            loading={loading}
           />
         </div>
       </div>

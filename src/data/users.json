@@ -3,7 +3,7 @@
     "username": "haasinfarooq",
     "email": "haasin.farooq@gmail.com",
     "password": "haasin123",
-    "last_login_date": "2024-01-07T00:45:29.438Z",
+    "last_login_date": "2024-01-07T03:45:25.891Z",
     "art_works_claimed": [
       {
         "id": 14572,
@@ -15,13 +15,31 @@
         "artist_display": "Edgar Degas\nFrench, 1834-1917"
       },
       {
-        "id": 11294,
-        "title": "Half-Length Female Nude",
+        "id": 3752,
+        "title": "The Madonna of the Rosary",
         "thumbnail": {
-          "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAFlRTWpjXGtkXHJoX3VoY3drYnZsY3BqZHNrZHNvZ3lvZXNwaHNxaXZybH93a3l1bYZ+c4+CdZOCc5WGeAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAUR4NMIEHMASxIUDmJMETFISggAOw==",
-          "alt_text": "A work made of oil on canvas."
+          "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAAIqKd4+Pe5WVgJWUgZaVgZaXgpiYhJmZhJqahpubh52diaOijaink6qqlAAAAAAAACH5BAAAAAAALAAAAAADAAUAAAQLMAUlziiIKGDaYhEAOw==",
+          "alt_text": "A work made of engraving on ivory laid paper."
         },
-        "artist_display": "Pablo Picasso\nSpanish, active France, 1881–1973"
+        "artist_display": "Israhel van Meckenem the Younger\nGerman, c. 1440/45-1503"
+      },
+      {
+        "id": 21977,
+        "title": "Melon-Shaped Ewer with Stylized Flowers",
+        "thumbnail": {
+          "lqip": "data:image/gif;base64,R0lGODlhBQAFAPQAAKWnorG0qL28tsPGrMbFyNHSztPUz9rez83N1dbV19bW29PT3tbW3tnZ397g1ePn0eDg3tra4tra49vb5ODg5+Pi6Obk6+Ti7Obl7QAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAFAAUAAAUVYHRZ2NRATqEwxxMgkjEAS5UIBBUCADs=",
+          "alt_text": "A work made of stoneware with celadon glaze and underglaze incised decoration."
+        },
+        "artist_display": "Korea"
+      },
+      {
+        "id": 6010,
+        "title": "Number 19",
+        "thumbnail": {
+          "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAAKlyV6pyWqt2Xad9W654XYx+d6qMUqyRV5OCdqeAaa+DbLWIaLeLcLKKd7ePgAAAACH5BAAAAAAALAAAAAADAAUAAAQLUASAFClptHUcMxEAOw==",
+          "alt_text": "Blurry rectangles of yellow, gray, and black float against background of orange."
+        },
+        "artist_display": "Mark Rothko (Marcus Rothkowitz)\nAmerican, born Russia (Latvia), 1903–1970"
       }
     ]
   },
