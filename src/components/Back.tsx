@@ -1,6 +1,6 @@
-import IconArrowLeft from "@/svgs/icons/arrow-left";
 import { useRouter } from "next/navigation";
 import React from "react";
+import { ArrowLeftIcon } from "@radix-ui/react-icons";
 
 export const Back = () => {
   const router = useRouter();
@@ -10,7 +10,7 @@ export const Back = () => {
       className="flex items-center space-x-2 text-art-gray-light"
       onClick={() => router.back()}
     >
-      <IconArrowLeft className="h-6 w-6" />
+      <ArrowLeftIcon className="h-5 w-5" />
       <span>Back</span>
     </button>
   );

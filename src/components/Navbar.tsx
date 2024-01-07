@@ -5,8 +5,8 @@ import React, { useEffect, useRef, useState } from "react";
 
 import Logo from "../assets/images/logo.png";
 import { useAuth } from "@/contexts/AuthContext";
-import IconLogout from "@/svgs/icons/logout";
 import Link from "next/link";
+import { ExitIcon } from "@radix-ui/react-icons";
 
 export const Navbar = () => {
   const { currentUser, logout } = useAuth();
@@ -54,10 +54,10 @@ export const Navbar = () => {
                 aria-labelledby="article-options"
               >
                 <button
-                  className="hover:bg-art-gray-hover flex w-full items-center space-x-2 rounded-md px-3 py-2"
+                  className="flex w-full items-center space-x-2 rounded-md px-3 py-2 hover:bg-art-gray-hover"
                   onClick={logout}
                 >
-                  <IconLogout className="h-5 w-5" />
+                  <ExitIcon className="h-5 w-5" />
                   <span>Logout</span>
                 </button>
               </div>

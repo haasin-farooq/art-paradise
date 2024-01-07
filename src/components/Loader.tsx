@@ -1,4 +1,4 @@
-import IconLoader from "@/svgs/icons/loader";
+import IconLoader from "@/assets/svgs/loader";
 
 const Loader = () => (
   <div className="flex h-full min-h-[calc(100vh-144px)] w-full items-center justify-center p-2">
